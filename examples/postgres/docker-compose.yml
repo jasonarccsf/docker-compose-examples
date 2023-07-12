@@ -5,7 +5,8 @@ services:
   postgres:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: example
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
 
   adminer:
     image: adminer
