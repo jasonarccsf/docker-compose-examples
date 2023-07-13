@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
 
-  adminer:
-    image: adminer
-    ports:
-      - 8080:8080
+  # adminer:
+  #   image: adminer
+  #   ports:
+  #     - 8080:8080
