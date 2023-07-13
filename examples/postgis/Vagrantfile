@@ -12,6 +12,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # General VM configuration.
   config.vm.box = "geerlingguy/debian11"
+  config.ssh.insert_key = false
 
   # Sync configuration.
   if Vagrant::Util::Platform.wsl?
@@ -22,14 +23,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider :virtualbox do |v|
     v.name = "postgis"
     v.cpus = 1
-    v.memory = 256
+    v.memory = 2048
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--ioapic", "on"]
   end
 
   # Ansible provisioner.
-  config.vm.provision "ansible" do |ansible|
-    ansible.compatibility_mode = "2.0"
-    ansible.playbook = "provisioning/main.yml"
-    ansible.inventory_path = "provisioning/inventory"
-    ansible.become = true
-  end
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.compatibility_mode = "2.0"
+  #   ansible.playbook = "provisioning/main.yml"
+  #   ansible.become = true
+  # end
 end

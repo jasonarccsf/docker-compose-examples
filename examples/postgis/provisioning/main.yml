@@ -1,5 +1,5 @@
 ---
-- hosts: svn
+- hosts: all
   gather_facts: yes
 
   vars_files:
