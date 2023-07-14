@@ -1,9 +1,8 @@
 ---
 - hosts: all
-  gather_facts: yes
 
   vars_files:
     - vars/main.yml
 
-  roles:
-    - geerlingguy.docker
+  tasks:
+    - import_tasks: tasks/postgresql_info.yml

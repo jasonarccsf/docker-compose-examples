@@ -1,0 +1,8 @@
+- name: Collect tablespaces and repl_slots info
+  become: true
+  become_user: pgsql
+  community.postgresql.postgresql_info:
+    db: postgres
+    filter:
+    - tablesp*
+    - repl_sl*
